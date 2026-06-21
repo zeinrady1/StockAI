@@ -681,7 +681,7 @@ function hiTADD(){
     if(i===_taIdx)el.scrollIntoView({block:'nearest'});
   });
 }
-function selectTA(ticker){ closeTADD(); goTA(ticker); }
+function selectTA(ticker){ closeTADD(); viewTicker(ticker); }
 function closeTADD(){ $('taDD').style.display='none'; }
 
 function setTAIv(iv, btn) {
@@ -1379,6 +1379,7 @@ function renderNews(articles){
     el.innerHTML='<div class="empty">No news loaded</div>';
     $('nwsCount').textContent='';return;
   }
+  articles = [...articles].sort((a,b) => new Date(b.published||0) - new Date(a.published||0));
   _allNews=articles; _newsShown=0;
   $('nwsCount').textContent=articles.length+' articles';
   el.innerHTML='';
